@@ -9,7 +9,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
-  "homepage":"https://KRTirtho/github.io/project_simpson_quote_FCC",
+  "homepage":"https://krtirtho.github.io/project_simpson_quote_FCC/",
   "scripts": {
     "predeploy": "npm run-scripts build",
     "deploy": "gh-pages -d build",
