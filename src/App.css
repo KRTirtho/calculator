@@ -51,7 +51,7 @@
 }
 .bg ,body{
     width: 100%;
-    height: 100vh;
+    height: 110vh;
     background-size: 400% 400%;
     background-image: linear-gradient(45deg, rgb(255, 252, 53), wheat,  teal, rgb(255, 179, 14));
     animation: animate 10s infinite normal;
@@ -98,3 +98,18 @@
         content: '';
     }
 }
+@media only screen and (max-width: 650px) {
+    #quote-box{
+        width: 80%;
+        margin-top: 20%;
+    }
+    .bg{
+        height: 120vh;
+    }
+    #text{
+        font-size: 20px;
+    }
+    #text::before{
+       font-size: 90px;
+    }
+  }

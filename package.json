@@ -11,9 +11,9 @@
   },
   "homepage":"https://krtirtho.github.io/project_simpson_quote_FCC/",
   "scripts": {
-    "predeploy": "npm run-scripts build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-script start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
