@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 
-const url = 'https://thesimpsonsquoteapi.glitch.me/quotes'
-
+const url = 'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json'
+const urlImg = 'https://thesimpsonsquoteapi.glitch.me/quotes'
 
 // const fetchQuote = fetch()
 
@@ -11,6 +11,10 @@ class App extends React.Component{
     super(props)
     this.state = {
       data: [],
+      loaded: false,
+      updateData: null,
+      imgData: [],
+      imgPos: [],
       loaded: false
     }
     this.handleClick = this.handleClick.bind(this)
@@ -22,28 +26,37 @@ class App extends React.Component{
      .then(json =>{
        this.setState({
          loaded : true,
-         data: json,
-         bgPosition: "0%"
+         data: json.quotes
        })
-       console.log(json)
-     }).catch(err=> console.log('Failed to load data from'+url+err))
-  }
-  handleClick(){
-    fetch(url)
+     }).catch(err=> console.error(err +' from '+url+err));
+     fetch(urlImg)
      .then(res=> res.json())
      .then(json =>{
        this.setState({
-         loaded : true,
-         data: json
+         loadedImg : true,
+         imgData: json[0].image,
+         imgPos: json[0].characterDirection
        })
-       console.clear()
-       console.log(json)
-     }).catch(err=> console.error(err+' from '+url))
+     }).catch(err=> console.error('Failed to load image from'+urlImg+err))
+  }
+  handleClick(){
+    const randomNumb = Math.floor(Math.random() * this.state.data.length)
+    const newQuote = this.state.data[randomNumb]
+    fetch(urlImg)
+     .then(res=> res.json())
+     .then(json =>{
+       this.setState({
+         loadedImg : true,
+         imgData: json[0].image,
+         updateData: newQuote,
+         imgPos: json[0].characterDirection
+       })
+     }).catch(err=> console.error('Failed to load image from'+urlImg+err))
   }
 
   render(){
-    var {loaded, data} = this.state
-    if(!loaded){
+    var {loaded, data, loadedImg} = this.state
+    if(!loaded && !loadedImg){
       return (
         <div id="loading">Loading</div>
       )
@@ -52,9 +65,9 @@ class App extends React.Component{
       return (
         <div className="bg" >
           <div id="quote-box">
-              {data[0].characterDirection==="Left"?<img style={{float:"left",maxWidth: 200, maxHeight: 200}} src={data[0].image}/>:<img style={{float:"right",maxWidth: 200, maxHeight: 200}} src={data[0].image}/>}
-              <p id="text">{data[0].quote}</p>
-              <p id="author">-{data[0].character}</p>
+              {this.state.imgPos === 'Right'?<img style={{float:'right', maxWidth: 200, maxHeight: 200}} src={this.state.imgData}/>:<img style={{float:'left', maxWidth: 200, maxHeight: 200}} src={this.state.imgData}/>}
+              {this.state.updateData===null?<p id="text">{this.state.data[0].quote}</p>:<p id="text">{this.state.updateData.quote}</p>}
+              {this.state.updateData===null?<p id="author">-{this.state.data[0].author}</p>:<p id="author">-{this.state.updateData.author}</p>}
               <button className="twitter"><a id="tweet-quote" target="_blank" href="https://twitter.com/intent/tweet"><i className="fab fa-twitter"></i></a></button>
               <button id="new-quote" onClick={this.handleClick}>FeedMeMore</button>
           </div>
