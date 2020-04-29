@@ -5,11 +5,12 @@
   "dependencies": {
     "cra-template": "1.0.3",
     "gh-pages": "^2.2.0",
+    "howler": "^2.1.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
-  "homepage":"https://krtirtho.github.io/project_simpson_quote_FCC/",
+  "homepage": "https://krtirtho.github.io/project_calculator_fcc/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

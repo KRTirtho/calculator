@@ -1,0 +1,96 @@
+$bgColorBtn : rgb(255, 223, 165);
+@mixin centerElement($position){
+    position: $position;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bg{
+    height: 100vh;
+    background-color: rgb(46, 46, 46);
+}
+
+.wrapper{
+    @include centerElement(absolute);
+    box-shadow: 0px 0px 10px 10px rgba(24, 24, 24, 0.555);
+    border-radius: 10px;
+    user-select: none;
+    // display: flex;
+    // flex-direction: column;
+    
+    #display{
+        border-radius: 10px 10px 0 0;
+        background-color: white;
+        height: 40px;
+        width: calc(148px * 2);
+        text-align: end;
+        font-size: larger;
+    }
+    button{
+        outline: none;
+        transition: 0.1s all ease-in-out;
+        &:active{
+            background: rgb(0, 85, 165);
+        }
+    }
+    button:hover{
+        filter: brightness(2);
+    }
+    .operator{
+        text-align: center;
+        font-size: large;
+        height: 75px;
+        width: 150px;
+        background: $bgColorBtn;
+        border: none;
+    }
+    .number{
+        text-align: center;
+        font-size: large;
+        height: 75px;
+        width: 75px;
+        background: #1b1d31;
+        color: white;
+        border: none;
+    }
+    #clear{
+        background: rgb(255, 105, 105);
+        &:active{
+            background: rgb(95, 46, 40);
+        }
+    }
+    #equals{
+        background: rgb(17, 240, 136);
+        color: rgb(0, 94, 50);
+        border-radius: 0px 0px 10px 0px;
+        &:hover{
+            filter: brightness(1) !important;
+            background: rgb(0, 212, 106);
+            color: rgb(27, 27, 27);
+        }
+        &:active{
+            background: rgb(0, 165, 96);
+        }
+    }
+    #zero{
+        background: #1b1d31;
+        color: white;
+        border-right: white 0.1px solid;
+        border-radius: 0px 0px 0 10px;
+        &:active{
+            background: rgb(0, 85, 165);
+        }
+    }
+    .logic{
+        background: rgb(110, 185, 255);
+        &:hover{
+            filter: brightness(1) !important;
+            background: rgb(49, 153, 250);
+            color: rgb(27, 27, 27);
+        }
+        &:active{
+            background: rgb(0, 85, 165);
+        }
+    }
+}

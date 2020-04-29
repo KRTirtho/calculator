@@ -1,119 +1,114 @@
-#quote-box{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 10px;
-    padding: 30px;
-    color: rgb(238, 184, 84);
-    box-shadow: 10px 10px 20px rgba(10, 10, 10, 0.411);
-    background: transparent;
+.bg {
+  height: 100vh;
+  background-color: #2e2e2e;
 }
-#text{
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
+
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-box-shadow: 0px 0px 10px 10px rgba(24, 24, 24, 0.555);
+          box-shadow: 0px 0px 10px 10px rgba(24, 24, 24, 0.555);
+  border-radius: 10px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
-#text::before{
-   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-   content: '“';
-   font-size: 250px;
-   position: relative;
-   top: 125px;
-   color: #0e0e0e62;
-   line-height: 0;
+
+.wrapper #display {
+  border-radius: 10px 10px 0 0;
+  background-color: white;
+  height: 40px;
+  width: calc(148px * 2);
+  text-align: end;
+  font-size: larger;
 }
-#author{
-    font-size:20px;
-    text-align: right;
-    font-weight: 500;
+
+.wrapper button {
+  outline: none;
+  -webkit-transition: 0.1s all ease-in-out;
+  transition: 0.1s all ease-in-out;
 }
-#new-quote{
-    border: none;
-    background-color: rgb(248, 211, 143);
-    border-radius: 10px;
-    padding: 10px;
-    margin-left: 50px;
-    transition: 0.5s ease;
-    outline: none !important;
+
+.wrapper button:active {
+  background: #0055a5;
 }
-#new-quote:hover{
-    background-color: wheat;
+
+.wrapper button:hover {
+  -webkit-filter: brightness(2);
+          filter: brightness(2);
 }
-#new-quote:active{
-    background-color: rgb(253, 199, 98);
+
+.wrapper .operator {
+  text-align: center;
+  font-size: large;
+  height: 75px;
+  width: 150px;
+  background: #ffdfa5;
+  border: none;
 }
-.twitter, #tweet-quote{
-    background-color: transparent;
-    color:  rgb(248, 211, 143);
-    border: none;
-    font-size: 20px;
-    transition: 0.2s ease;
+
+.wrapper .number {
+  text-align: center;
+  font-size: large;
+  height: 75px;
+  width: 75px;
+  background: #1b1d31;
+  color: white;
+  border: none;
 }
-.twitter:hover{
-    transform: translateY(-3px);
+
+.wrapper #clear {
+  background: #ff6969;
 }
-.bg ,body{
-    width: 100%;
-    height: 110vh;
-    background-size: 400% 400%;
-    background-image: linear-gradient(45deg, #a3ff4e, #4f5bff,  rgb(113, 0, 136), #4f5bff,#a3ff4e);
-    animation: animate 10s infinite normal;
+
+.wrapper #clear:active {
+  background: #5f2e28;
 }
-@keyframes animate{
-    0%{
-        background-position: 0 50%;
-    }
-    50%{
-        background-position: 100% 50%;
-    }
-    100%{
-        background-position: 0 50%;
-    }
+
+.wrapper #equals {
+  background: #11f088;
+  color: #005e32;
+  border-radius: 0px 0px 10px 0px;
 }
-#loading{
-    font-size: 50px;
-    text-align: center;
-    color: rgb(245, 207, 137);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+.wrapper #equals:hover {
+  -webkit-filter: brightness(1) !important;
+          filter: brightness(1) !important;
+  background: #00d46a;
+  color: #1b1b1b;
 }
-#loading::after{
-    content: '';
-    animation: load 3s infinite;
-    transition: 0.2s ease;
+
+.wrapper #equals:active {
+  background: #00a560;
 }
-@keyframes load{
-    0%{
-        content: '';
-    }
-    25%{
-        content: '.';
-    }
-    50%{
-        content: '..';
-    }
-    75%{
-        content: '...';
-    }
-    100%{
-        content: '';
-    }
+
+.wrapper #zero {
+  background: #1b1d31;
+  color: white;
+  border-right: white 0.1px solid;
+  border-radius: 0px 0px 0 10px;
 }
-@media only screen and (max-width: 650px) {
-    #quote-box{
-        width: 80%;
-        margin-top: 20%;
-    }
-    .bg{
-        height: 120vh;
-    }
-    #text{
-        font-size: 20px;
-    }
-    #text::before{
-       font-size: 90px;
-    }
-  }
+
+.wrapper #zero:active {
+  background: #0055a5;
+}
+
+.wrapper .logic {
+  background: #6eb9ff;
+}
+
+.wrapper .logic:hover {
+  -webkit-filter: brightness(1) !important;
+          filter: brightness(1) !important;
+  background: #3199fa;
+  color: #1b1b1b;
+}
+
+.wrapper .logic:active {
+  background: #0055a5;
+}
+/*# sourceMappingURL=App.css.map */
