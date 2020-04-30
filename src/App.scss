@@ -16,20 +16,19 @@ $bgColorBtn : rgb(255, 223, 165);
     box-shadow: 0px 0px 10px 10px rgba(24, 24, 24, 0.555);
     border-radius: 10px;
     user-select: none;
-    // display: flex;
-    // flex-direction: column;
     
     #display{
         border-radius: 10px 10px 0 0;
-        background-color: white;
-        height: 40px;
-        width: calc(148px * 2);
+        height: 60px;
+        width: calc(150px * 2);
         text-align: end;
-        font-size: larger;
+        background-color: white;
+        color: #2e325c;
+        border: none;
+        cursor: pointer;
     }
     button{
         outline: none;
-        transition: 0.1s all ease-in-out;
         &:active{
             background: rgb(0, 85, 165);
         }
@@ -65,7 +64,6 @@ $bgColorBtn : rgb(255, 223, 165);
         color: rgb(0, 94, 50);
         border-radius: 0px 0px 10px 0px;
         &:hover{
-            filter: brightness(1) !important;
             background: rgb(0, 212, 106);
             color: rgb(27, 27, 27);
         }

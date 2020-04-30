@@ -1,6 +1,11 @@
 import React from 'react';
 import './App.css';
 
+
+const style={
+  fontSize: "30px"
+}
+
 class App extends React.Component{
   constructor(props){
     super(props);
@@ -8,17 +13,14 @@ class App extends React.Component{
       currentNumber: '0',
       decimalFlag: false,
       operatorFlag: false,
-      limitFlag: false
+      minusFlag: false
     }
     this.handleClick = this.handleClick.bind(this);
-    // this.clearDisplay = this.clearDisplay.bind(this);
-    // this.totalAnswer = this.totalAnswer.bind(this);
-    // this.backSpace = this.backSpace.bind(this);
   }
 
 handleClick(e){
   let buttonName = e.target.value
-  let {currentNumber, operatorFlag, decimalFlag} = this.state
+  let {currentNumber, operatorFlag, decimalFlag, minusFlag, isMinusZeroInIndex} = this.state
   switch(true){
       case buttonName === "0" ||
            buttonName === "1" ||
@@ -33,24 +35,43 @@ handleClick(e){
       if(this.state.currentNumber!=="0"){
       currentNumber += buttonName
       operatorFlag = false
+      minusFlag = false
       }else{
       currentNumber = buttonName
+      minusFlag = false
       }
          break
     case buttonName === "+" ||
-         buttonName === "-" || 
          buttonName === "*" ||
          buttonName === "/" :
          if(!this.state.operatorFlag){
-           currentNumber += buttonName
-           operatorFlag = true
-           decimalFlag = false
-         }else{
+          currentNumber += buttonName
+          operatorFlag = true
+          decimalFlag = false
+        }
+        else if(this.state.minusFlag === true){
+          let replaceTwice = currentNumber.substring(0, currentNumber.length-2)
+          currentNumber = replaceTwice;
+          currentNumber += buttonName;
+          minusFlag = false
+        }
+         else{
            let replacer = currentNumber.slice(0, currentNumber.length-1);
            currentNumber = replacer;
            currentNumber += buttonName
          }
          break
+    case buttonName === '-':
+       if(currentNumber === "0"){
+        currentNumber = buttonName
+        decimalFlag = false;
+      }
+      else if(!minusFlag && currentNumber !== "0"){
+        currentNumber += buttonName
+        minusFlag = true;
+        decimalFlag = false
+      }
+         break 
     case buttonName === ".":
          if(!this.state.decimalFlag){    //Triggering the Value Of Decimal if Decimal is false then append it to 
           currentNumber += buttonName;    //the Display or current Number & soon after that make it true so  it will 
@@ -60,72 +81,42 @@ handleClick(e){
     case buttonName === "clear":
          currentNumber = '0'
          operatorFlag = false;
-          decimalFlag = false
+         minusFlag = false;
+         decimalFlag = false
+         style.fontSize = "30px"
          break     
     case buttonName === '=':
          currentNumber = eval(this.state.currentNumber)
          operatorFlag = false;
          decimalFlag = true;
+         minusFlag = false;
+         if(currentNumber.length < 9){style.fontSize = "30px"};
          break
+    case buttonName === 'delete':
+         if(currentNumber !== eval(this.state.currentNumber) && currentNumber !== "0" && currentNumber !== '+' && currentNumber !=='-' && currentNumber !== '/' && currentNumber !=='*'){
+            currentNumber = currentNumber.substring(0, currentNumber.length-1)
+         }
   }
   this.setState({decimalFlag})
   this.setState({operatorFlag})
+  this.setState({minusFlag})
   this.setState({currentNumber})
 }
 
-// totalAnswer(e){
-//   if(this.state.input !== ''){
-//     this.setState({
-//       output: eval(this.state.input)
-//     })
-//     // this.setState({
-//     //   input: 
-//     // })
-//   }
-// }
-
-
-// backSpace(e){
-//   if(this.state.input !== ''){
-//     this.setState({
-//       input: this.state.input.substring(0, this.state.input.length-1)
-//     })
-//   }
-// }
-
-// clearDisplay(e){
-//     this.setState({
-//       input: '',
-//       output: '0'
-//     })
-// }
   render(){
 
-  //   let {input, disabled} = this.state;
 
-  //   if(this.state.input === "00"){
-  //     this.setState({
-  //       input: '0'
-  //     })
-  //   }
-  //   // if(!regex.test(this.state.input)){
-  //   //   this.setState({
-  //   //     disabled: true
-  //   //   })
-  //   // }
+    if(this.state.currentNumber.length > 9){
+      style.fontSize = "20px"
+    }
 
-  //   else if (input[0] == "." || input[0] == "+" || input[0] == "-" || input[0] == "/" || input[0] == "*") {
-  //     this.setState({
-  //       input: ''
-  //     })
-  // }
     return (
       <div className="bg">
       <div className="wrapper">
 
         
 
-        <input type="text" id="display" value={this.state.currentNumber}/>
+        <input autoComplete={false} style={{fontSize: style.fontSize}} type="text" id="display" value={this.state.currentNumber}/>
        
 
         <div className="gridContainer">
@@ -164,7 +155,7 @@ handleClick(e){
 
         <button id="three" value="3" onClick={this.handleClick} className="number">3</button>
 
-        <button id="backspace" onClick={this.handleClick} className="number logic">C</button>
+        <button id="backspace"  value="delete" onClick={this.handleClick} className="number logic">C</button>
 
         <br/>
 

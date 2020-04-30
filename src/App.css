@@ -20,17 +20,17 @@
 
 .wrapper #display {
   border-radius: 10px 10px 0 0;
-  background-color: white;
-  height: 40px;
-  width: calc(148px * 2);
+  height: 60px;
+  width: calc(150px * 2);
   text-align: end;
-  font-size: larger;
+  background-color: white;
+  color: #2e325c;
+  border: none;
+  cursor: pointer;
 }
 
 .wrapper button {
   outline: none;
-  -webkit-transition: 0.1s all ease-in-out;
-  transition: 0.1s all ease-in-out;
 }
 
 .wrapper button:active {
@@ -76,8 +76,6 @@
 }
 
 .wrapper #equals:hover {
-  -webkit-filter: brightness(1) !important;
-          filter: brightness(1) !important;
   background: #00d46a;
   color: #1b1b1b;
 }
