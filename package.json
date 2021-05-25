@@ -10,7 +10,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
-  "homepage": "https://krtirtho.github.io/project_calculator_fcc/",
+  "homepage": "https://krtirtho.github.io/calculator/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
